@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
+    <ion-button fill="clear" (click)="dismissLogin()" slot="end">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" name="password"></ion-input>
+      </ion-item>
+      <ion-button type="submit" expand="full" fill="solid" >
+        Login
+      </ion-button>
+    </ion-list>
+  </form>
+  <p class="ion-text-center">Don't have account?</p>
+  <ion-button (click)="registerModel()" color="danger" expand="full" fill="solid">
+    Register
+  </ion-button>
 </ion-content>

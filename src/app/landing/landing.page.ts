@@ -1,7 +1,7 @@
 import { RegisterPage } from './../auth/register/register.page';
 import { LoginPage } from './../auth/login/login.page';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-landing',
@@ -9,7 +9,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./landing.page.scss'],
 })
 export class LandingPage implements OnInit {
-
+  test;
   constructor(
     private modalController: ModalController
   ) { }
@@ -53,5 +53,14 @@ export class LandingPage implements OnInit {
 
     return await registerModal.present();
   }
+
+  // async register() {
+  //   const toast = await this.toastController.create({
+  //     message: 'Ini register button.',
+  //     duration: 2000
+  //   });
+  //   toast.present();
+  // }
+
 
 }
