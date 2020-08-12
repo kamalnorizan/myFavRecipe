@@ -31,9 +31,27 @@ export class RecipesPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // this.recipes = ;
+    console.log('Recipes: ngOnInit');
   }
 
+  ionViewWillEnter(){
+    console.log('Recipes: ionViewWillEnter');
+  }
 
+  ionViewDidEnter(){
+    console.log('Recipes: ionViewDidEnter');
+  }
+
+  ionViewWillLeave(){
+    console.log('Recipes: ionViewWillLeave');
+  }
+
+  ionViewDidLeave(){
+    console.log('Recipes: ionViewDidLeave');
+  }
+
+  ngOnDestroy() {
+    console.log('Recipes: OnDestroy');
+  }
 
 }
