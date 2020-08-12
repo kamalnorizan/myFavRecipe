@@ -7,15 +7,15 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form>
+  <form #form="ngForm" method="POST" (ngSubmit)="login(form)" >
     <ion-list>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input type="email" name="email"></ion-input>
+        <ion-input type="email" name="email" ngModel></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input type="password" name="password"></ion-input>
+        <ion-input type="password" name="password" ngModel></ion-input>
       </ion-item>
       <ion-button type="submit" expand="full" fill="solid" >
         Login

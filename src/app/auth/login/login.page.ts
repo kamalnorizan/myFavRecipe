@@ -1,5 +1,5 @@
 import { RegisterPage } from './../register/register.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
 export class LoginPage implements OnInit {
 
   constructor(
+    private navController: NavController,
     private modalController: ModalController
   ) { }
 
@@ -30,6 +31,8 @@ export class LoginPage implements OnInit {
   }
 
   login(form: NgForm) {
+    this.dismissLogin();
+    this.navController.navigateRoot('/recipes');
   }
 
 }
