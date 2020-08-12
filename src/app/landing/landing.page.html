@@ -1,11 +1,36 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>landing</ion-title>
-  </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
-<ion-button expand="block" fill="solid" routerLink="/recipes">
-  Recipes
-</ion-button>
+  <ion-grid fixed class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12">
+        <img src="https://resepichenom.com/media/895c9dbf91933941985d76d069f9b1982912b5da.jpeg">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Get Started</ion-card-subtitle>
+      <ion-card-title>Welcome to My Recipes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Please Login or Register
+      <ion-grid fixed class="ion-no-padding">
+        <ion-row>
+          <ion-col size="6">
+            <ion-button color="success" (click)="login()" expand="full" fill="solid">
+              Login 
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button color="danger" (click)="register()" expand="full" fill="solid">
+              Register
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid> 
+    </ion-card-content>
+  </ion-card>
 </ion-content>
