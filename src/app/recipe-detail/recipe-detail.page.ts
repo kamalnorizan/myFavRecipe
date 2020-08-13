@@ -1,3 +1,6 @@
+import { Recipedetail } from './../model/recipe-detail.model';
+import { Recipe } from './../model/recipe.model';
+import { RequestService } from './../services/request.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,17 +12,35 @@ import { Component, OnInit } from '@angular/core';
 export class RecipeDetailPage implements OnInit {
   title: string;
   imageUrl: string;
+  recipeId: string;
+  loadedRecipe: Recipe;
+  ingrediants: Recipedetail[];
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private requestService: RequestService
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe( (param) => {
-      const title = param.get('title');
-      const imageUrl = param.get('imageUrl');
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      if (!paramMap.has('recipeId')) {
+        return;
+      }
+      const recipeId = paramMap.get('recipeId');
+      const title = paramMap.get('title');
+      const imageUrl = paramMap.get('imageUrl');
+      this.recipeId = recipeId;
       this.title = title;
       this.imageUrl = imageUrl;
     });
-  }
 
+    this.requestService.getRecipe(this.recipeId).subscribe(
+      recipe => {
+        this.loadedRecipe = recipe;
+        this.ingrediants = this.loadedRecipe.ingredients;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 }

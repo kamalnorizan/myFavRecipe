@@ -1,3 +1,4 @@
+import { RequestService } from './../../services/request.service';
 import { RegisterPage } from './../register/register.page';
 import { ModalController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private navController: NavController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private requestService: RequestService
   ) { }
 
   ngOnInit() {
@@ -31,8 +33,17 @@ export class LoginPage implements OnInit {
   }
 
   login(form: NgForm) {
-    this.dismissLogin();
-    this.navController.navigateRoot('/recipes');
+    this.requestService.login(form.value.email, form.value.password).subscribe(
+      data => {
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        this.dismissLogin();
+        this.navController.navigateRoot('/recipes');
+      }
+    );
   }
 
 }

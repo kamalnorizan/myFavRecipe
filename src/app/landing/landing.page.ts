@@ -1,7 +1,8 @@
+import { RequestService } from './../services/request.service';
 import { RegisterPage } from './../auth/register/register.page';
 import { LoginPage } from './../auth/login/login.page';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-landing',
@@ -11,15 +12,22 @@ import { ModalController, ToastController } from '@ionic/angular';
 export class LandingPage implements OnInit {
   test;
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private requestService: RequestService,
+    private navController: NavController
   ) { }
 
   ngOnInit() {
     console.log('Landing: ngOnInit');
   }
 
-  ionViewWillEnter(){
-    console.log('Landing: ionViewWillEnter');
+  ionViewWillEnter() {
+    this.requestService.getToken().then(
+      () => {
+        if (this.requestService.isLoggedIn) {
+          this.navController.navigateRoot('/recipes');
+        }
+    });
   }
 
   ionViewDidEnter(){
@@ -34,9 +42,9 @@ export class LandingPage implements OnInit {
     console.log('Landing: ionViewDidLeave');
   }
 
-  ngOnDestroy() {
-    console.log('Landing: OnDestroy');
-  }
+  // ngOnDestroy() {
+  //   console.log('Landing: OnDestroy');
+  // }
 
   async login(){
     const loginModal = await this.modalController.create({
